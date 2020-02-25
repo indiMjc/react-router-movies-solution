@@ -10,7 +10,7 @@ const App = () => {
 
 	const addToSavedList = movie => {
 		for (let i = 0; i < savedList.length; i++) {
-			if (savedList[i].id == movie.id) return
+			if (savedList[i].id === movie.id) return
 		}
 
 		setSavedList([...savedList, movie])
