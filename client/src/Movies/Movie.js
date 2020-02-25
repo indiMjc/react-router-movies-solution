@@ -3,8 +3,12 @@ import MovieCard from './MovieCard'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
-const Movie = ({ savedList, setSavedList }) => {
+const Movie = ({ savedList, setSavedList, addToSavedList }) => {
 	const [movie, setMovie] = useState()
+
+	let deleteMovie = movieToRemove => {
+		setSavedList(savedList.filter(movie => movie != movieToRemove))
+	}
 
 	const { id } = useParams()
 
@@ -19,6 +23,10 @@ const Movie = ({ savedList, setSavedList }) => {
 			})
 	}, [id])
 
+	const saveMovie = movie => {
+		addToSavedList(movie)
+	}
+
 	if (!movie) {
 		return <div>Loading movie information...</div>
 	}
@@ -26,8 +34,15 @@ const Movie = ({ savedList, setSavedList }) => {
 	return (
 		<div className='save-wrapper'>
 			<MovieCard movie={movie} />
-			<div className='save-button' onClick={() => setSavedList([...savedList, movie])}>
+			<div className='save-button' onClick={() => saveMovie(movie)}>
 				Save
+			</div>
+			<div
+				className='save-button'
+				onClick={() => deleteMovie(movie)}
+				style={{ position: 'absolute', top: '60px', backgroundColor: 'red', color: 'white' }}
+			>
+				Delete
 			</div>
 		</div>
 	)

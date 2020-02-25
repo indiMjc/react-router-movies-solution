@@ -1,16 +1,35 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const SavedList = props => (
-	<div className='saved-list'>
-		<h3>Saved Movies:</h3>
-		{props.savedList.map(movie => (
-			<span className='saved-movie'>{movie.title}</span>
-		))}
-		<NavLink to='/' className='home-button'>
-			Home
-		</NavLink>
-	</div>
-)
+const SavedList = props => {
+	return (
+		<div className='saved-list'>
+			<h3>Saved Movies:</h3>
+			{props.savedList.map(movie => (
+				<span key={movie.title} className='saved-movie'>
+					{movie.title}
+				</span>
+			))}
+			<div>
+				<NavLink to='/' className='home-button' style={{ textDecoration: 'none', color: 'black' }}>
+					Home
+				</NavLink>
+				<button
+					className='home-button'
+					onClick={() => props.clearAll([])}
+					style={{
+						border: 'none',
+						backgroundColor: 'red',
+						color: 'white',
+						padding: '6px',
+						marginLeft: '10px'
+					}}
+				>
+					Clear All
+				</button>
+			</div>
+		</div>
+	)
+}
 
 export default SavedList

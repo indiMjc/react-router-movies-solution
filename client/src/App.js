@@ -9,17 +9,17 @@ const App = () => {
 	const [savedList, setSavedList] = useState([])
 
 	const addToSavedList = movie => {
-		setSavedList([...savedList, movie])
+		if (!!savedList.indexOf(movie)) setSavedList([...savedList, movie])
 	}
 
 	return (
 		<div>
-			<SavedList savedList={savedList} />
+			<SavedList savedList={savedList} clearAll={setSavedList} />
 			<Route exact path='/'>
 				<MovieList />
 			</Route>
 			<Route path='/movies/:id'>
-				<Movie savedList={savedList} setSavedList={setSavedList} />
+				<Movie savedList={savedList} setSavedList={setSavedList} addToSavedList={addToSavedList} />
 			</Route>
 		</div>
 	)
