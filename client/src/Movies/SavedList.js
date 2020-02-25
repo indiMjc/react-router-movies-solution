@@ -14,17 +14,7 @@ const SavedList = props => {
 				<NavLink to='/' className='home-button' style={{ textDecoration: 'none', color: 'black' }}>
 					Home
 				</NavLink>
-				<button
-					className='home-button'
-					onClick={() => props.clearAll([])}
-					style={{
-						border: 'none',
-						backgroundColor: 'red',
-						color: 'white',
-						padding: '6px',
-						marginLeft: '10px'
-					}}
-				>
+				<button className='clear-all-button' onClick={() => props.clearAll([])}>
 					Clear All
 				</button>
 			</div>

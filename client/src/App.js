@@ -9,7 +9,11 @@ const App = () => {
 	const [savedList, setSavedList] = useState([])
 
 	const addToSavedList = movie => {
-		if (!!savedList.indexOf(movie)) setSavedList([...savedList, movie])
+		for (let i = 0; i < savedList.length; i++) {
+			if (savedList[i].id == movie.id) return
+		}
+
+		setSavedList([...savedList, movie])
 	}
 
 	return (

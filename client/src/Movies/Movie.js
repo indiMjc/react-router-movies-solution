@@ -6,11 +6,11 @@ import axios from 'axios'
 const Movie = ({ savedList, setSavedList, addToSavedList }) => {
 	const [movie, setMovie] = useState()
 
-	let deleteMovie = movieToRemove => {
-		setSavedList(savedList.filter(movie => movie != movieToRemove))
-	}
-
 	const { id } = useParams()
+
+	let deleteMovie = movieToRemove => {
+		setSavedList(savedList.filter(movie => movie.id !== movieToRemove.id))
+	}
 
 	useEffect(() => {
 		axios
@@ -37,11 +37,7 @@ const Movie = ({ savedList, setSavedList, addToSavedList }) => {
 			<div className='save-button' onClick={() => saveMovie(movie)}>
 				Save
 			</div>
-			<div
-				className='save-button'
-				onClick={() => deleteMovie(movie)}
-				style={{ position: 'absolute', top: '60px', backgroundColor: 'red', color: 'white' }}
-			>
+			<div className='delete-button' onClick={() => deleteMovie(movie)}>
 				Delete
 			</div>
 		</div>
