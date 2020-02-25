@@ -12,6 +12,10 @@ const Movie = ({ savedList, setSavedList, addToSavedList }) => {
 		setSavedList(savedList.filter(movie => movie.id !== movieToRemove.id))
 	}
 
+	const saveMovie = movie => {
+		addToSavedList(movie)
+	}
+
 	useEffect(() => {
 		axios
 			.get(`http://localhost:5000/api/movies/${id}`)
@@ -22,10 +26,6 @@ const Movie = ({ savedList, setSavedList, addToSavedList }) => {
 				console.error(error)
 			})
 	}, [id])
-
-	const saveMovie = movie => {
-		addToSavedList(movie)
-	}
 
 	if (!movie) {
 		return <div>Loading movie information...</div>

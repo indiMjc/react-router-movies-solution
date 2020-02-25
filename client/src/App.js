@@ -8,12 +8,10 @@ import SavedList from './Movies/SavedList'
 const App = () => {
 	const [savedList, setSavedList] = useState([])
 
-	const addToSavedList = movie => {
-		for (let i = 0; i < savedList.length; i++) {
-			if (savedList[i].id === movie.id) return
-		}
+	const addToSavedList = newMovie => {
+		const exists = savedList.filter(movie => movie.id === newMovie.id)
 
-		setSavedList([...savedList, movie])
+		!exists.length && setSavedList([...savedList, newMovie])
 	}
 
 	return (
