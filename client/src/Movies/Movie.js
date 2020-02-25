@@ -3,7 +3,7 @@ import MovieCard from './MovieCard'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
-const Movie = () => {
+const Movie = ({ savedList, setSavedList }) => {
 	const [movie, setMovie] = useState()
 
 	const { id } = useParams()
@@ -19,12 +19,6 @@ const Movie = () => {
 			})
 	}, [id])
 
-	// Uncomment this only when you have moved on to the stretch goals
-	// const saveMovie = () => {
-	//   const addToSavedList = props.addToSavedList;
-	//   addToSavedList(movie)
-	// }
-
 	if (!movie) {
 		return <div>Loading movie information...</div>
 	}
@@ -32,7 +26,9 @@ const Movie = () => {
 	return (
 		<div className='save-wrapper'>
 			<MovieCard movie={movie} />
-			<div className='save-button'>Save</div>
+			<div className='save-button' onClick={() => setSavedList([...savedList, movie])}>
+				Save
+			</div>
 		</div>
 	)
 }
